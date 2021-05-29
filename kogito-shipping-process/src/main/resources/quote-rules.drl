@@ -1,0 +1,11 @@
+package org.kie.kogito.shipping;
+
+import org.kie.kogito.shipping.Quote;
+
+rule "Select cheapest one" ruleflow-group "quotes"
+    when
+        $quote: Quote($lowestPrice : price)
+        not Quote(price > $lowestPrice)
+    then
+        $quote.setApproved(true);
+end

@@ -1,7 +1,10 @@
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_St3LwKEHEDmf24l4WbBWEg" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
-  <bpmn2:itemDefinition id="_orderItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E_eventOutputXItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="new_shippingType" structureRef="String"/>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_BD_CUKJ4EDmevZHnPmQqvw" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+  <bpmn2:itemDefinition id="_prizeItem" structureRef="org.kie.kogito.shipping.Prize"/>
+  <bpmn2:itemDefinition id="_quote1Item" structureRef="org.kie.kogito.shipping.Quote"/>
+  <bpmn2:itemDefinition id="_quote2Item" structureRef="org.kie.kogito.shipping.Quote"/>
+  <bpmn2:itemDefinition id="_shippingItem" structureRef="org.kie.kogito.shipping.Shipping"/>
+  <bpmn2:itemDefinition id="__7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E_eventOutputXItem" structureRef="org.kie.kogito.shipping.Prize"/>
+  <bpmn2:itemDefinition id="shippingType" structureRef="org.kie.kogito.shipping.Prize"/>
   <bpmn2:itemDefinition id="__6C3C95C7-B442-4A39-A427-8745B8BEDA70_SkippableInputXItem" structureRef="Object"/>
   <bpmn2:itemDefinition id="__6C3C95C7-B442-4A39-A427-8745B8BEDA70_PriorityInputXItem" structureRef="Object"/>
   <bpmn2:itemDefinition id="__6C3C95C7-B442-4A39-A427-8745B8BEDA70_CommentInputXItem" structureRef="Object"/>
@@ -14,12 +17,46 @@
   <bpmn2:itemDefinition id="__6C3C95C7-B442-4A39-A427-8745B8BEDA70_NotCompletedReassignInputXItem" structureRef="Object"/>
   <bpmn2:itemDefinition id="__6C3C95C7-B442-4A39-A427-8745B8BEDA70_NotStartedNotifyInputXItem" structureRef="Object"/>
   <bpmn2:itemDefinition id="__6C3C95C7-B442-4A39-A427-8745B8BEDA70_NotCompletedNotifyInputXItem" structureRef="Object"/>
-  <bpmn2:itemDefinition id="__B643C619-B353-4E0C-AC50-AE214FE49C8A_eventInputXItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="shipping_completedType" structureRef="String"/>
-  <bpmn2:message id="_St5A8KEHEDmf24l4WbBWEg" itemRef="new_shippingType" name="new_shipping"/>
-  <bpmn2:message id="_St5oAKEHEDmf24l4WbBWEg" itemRef="shipping_completedType" name="shipping_completed"/>
+  <bpmn2:itemDefinition id="__6C3C95C7-B442-4A39-A427-8745B8BEDA70_shippingInputXItem" structureRef="org.kie.kogito.shipping.Shipping"/>
+  <bpmn2:itemDefinition id="__B643C619-B353-4E0C-AC50-AE214FE49C8A_eventInputXItem" structureRef="org.kie.kogito.shipping.Prize"/>
+  <bpmn2:itemDefinition id="shipping_completedType" structureRef="org.kie.kogito.shipping.Prize"/>
+  <bpmn2:itemDefinition id="__D3AED44F-24B8-4A6C-A29D-584BB000F32A_prizeInputXItem" structureRef="org.kie.kogito.shipping.Prize"/>
+  <bpmn2:itemDefinition id="__D3AED44F-24B8-4A6C-A29D-584BB000F32A_courierInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__D3AED44F-24B8-4A6C-A29D-584BB000F32A_resultOutputXItem" structureRef="org.kie.kogito.shipping.Quote"/>
+  <bpmn2:itemDefinition id="__90D42315-4321-4F1C-B5A7-0D51917F35CD_namespaceInputXItem" structureRef="java.lang.String"/>
+  <bpmn2:itemDefinition id="__90D42315-4321-4F1C-B5A7-0D51917F35CD_modelInputXItem" structureRef="java.lang.String"/>
+  <bpmn2:itemDefinition id="__90D42315-4321-4F1C-B5A7-0D51917F35CD_decisionInputXItem" structureRef="java.lang.String"/>
+  <bpmn2:itemDefinition id="__90D42315-4321-4F1C-B5A7-0D51917F35CD_quote1InputXItem" structureRef="org.kie.kogito.shipping.Quote"/>
+  <bpmn2:itemDefinition id="__90D42315-4321-4F1C-B5A7-0D51917F35CD_quote2InputXItem" structureRef="org.kie.kogito.shipping.Quote"/>
+  <bpmn2:itemDefinition id="__9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_prizeInputXItem" structureRef="org.kie.kogito.shipping.Prize"/>
+  <bpmn2:itemDefinition id="__9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_courierInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_resultOutputXItem" structureRef="org.kie.kogito.shipping.Quote"/>
+  <bpmn2:itemDefinition id="__AA2F4704-C261-4E22-ADE4-A71B01869862_prizeInputXItem" structureRef="org.kie.kogito.shipping.Prize"/>
+  <bpmn2:itemDefinition id="__AA2F4704-C261-4E22-ADE4-A71B01869862_quote1InputXItem" structureRef="org.kie.kogito.shipping.Quote"/>
+  <bpmn2:itemDefinition id="__AA2F4704-C261-4E22-ADE4-A71B01869862_quote2InputXItem" structureRef="org.kie.kogito.shipping.Quote"/>
+  <bpmn2:itemDefinition id="__AA2F4704-C261-4E22-ADE4-A71B01869862_resultOutputXItem" structureRef="org.kie.kogito.shipping.Shipping"/>
+  <bpmn2:message id="_BEL2oKJ4EDmevZHnPmQqvw" itemRef="shippingType" name="shipping"/>
+  <bpmn2:message id="_BEMdsKJ4EDmevZHnPmQqvw" itemRef="shipping_completedType" name="shipping_completed"/>
+  <bpmn2:interface id="_D3AED44F-24B8-4A6C-A29D-584BB000F32A_ServiceInterface" name="org.kie.kogito.shipping.CourierService" implementationRef="org.kie.kogito.shipping.CourierService">
+    <bpmn2:operation id="_D3AED44F-24B8-4A6C-A29D-584BB000F32A_ServiceOperation" name="retrieveQuote" implementationRef="retrieveQuote"/>
+  </bpmn2:interface>
+  <bpmn2:interface id="_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_ServiceInterface" name="org.kie.kogito.shipping.CourierService" implementationRef="org.kie.kogito.shipping.CourierService">
+    <bpmn2:operation id="_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_ServiceOperation" name="retrieveQuote" implementationRef="retrieveQuote"/>
+  </bpmn2:interface>
+  <bpmn2:interface id="_AA2F4704-C261-4E22-ADE4-A71B01869862_ServiceInterface" name="org.kie.kogito.shipping.ShippingService" implementationRef="org.kie.kogito.shipping.ShippingService">
+    <bpmn2:operation id="_AA2F4704-C261-4E22-ADE4-A71B01869862_ServiceOperation" name="createShipping" implementationRef="createShipping"/>
+  </bpmn2:interface>
   <bpmn2:process id="shipping" drools:packageName="org.kie.kogito.shipping" drools:version="1.0" drools:adHoc="false" name="shipping" isExecutable="true" processType="Public">
-    <bpmn2:property id="order" itemSubjectRef="_orderItem" name="order"/>
+    <bpmn2:property id="prize" itemSubjectRef="_prizeItem" name="prize"/>
+    <bpmn2:property id="quote1" itemSubjectRef="_quote1Item" name="quote1"/>
+    <bpmn2:property id="quote2" itemSubjectRef="_quote2Item" name="quote2"/>
+    <bpmn2:property id="shipping" itemSubjectRef="_shippingItem" name="shipping"/>
+    <bpmn2:sequenceFlow id="_65A9418F-34AF-40C8-8E4A-E406658175EC" sourceRef="_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD" targetRef="_AAB7FDF4-5904-49BB-BAF0-D64993010294"/>
+    <bpmn2:sequenceFlow id="_ED7762AC-B667-4A49-B8DB-1C89E1CF7EEF" sourceRef="_1BF8E39F-507E-470C-BEF2-FC906142B72A" targetRef="_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD"/>
+    <bpmn2:sequenceFlow id="_29D2F6C4-CAD8-4138-AB79-8856F54FA8C6" sourceRef="_90D42315-4321-4F1C-B5A7-0D51917F35CD" targetRef="_AA2F4704-C261-4E22-ADE4-A71B01869862"/>
+    <bpmn2:sequenceFlow id="_6A0D6328-4407-4E3F-8CBC-D6758FCB75BB" sourceRef="_AAB7FDF4-5904-49BB-BAF0-D64993010294" targetRef="_90D42315-4321-4F1C-B5A7-0D51917F35CD"/>
+    <bpmn2:sequenceFlow id="_22FCDAE6-6011-463E-B155-18F24BD711A8" sourceRef="_D3AED44F-24B8-4A6C-A29D-584BB000F32A" targetRef="_AAB7FDF4-5904-49BB-BAF0-D64993010294"/>
+    <bpmn2:sequenceFlow id="_6FCBDCD3-F325-4583-B86B-8EFC1FC65D4E" sourceRef="_1BF8E39F-507E-470C-BEF2-FC906142B72A" targetRef="_D3AED44F-24B8-4A6C-A29D-584BB000F32A"/>
     <bpmn2:sequenceFlow id="_95B0CA64-1025-42AD-934A-D90CE3AF17E0" sourceRef="_6C3C95C7-B442-4A39-A427-8745B8BEDA70" targetRef="_B643C619-B353-4E0C-AC50-AE214FE49C8A">
       <bpmn2:extensionElements>
         <drools:metaData name="isAutoConnection.source">
@@ -30,27 +67,171 @@
         </drools:metaData>
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="_405634B2-776E-4C04-B99A-809FEFC79828" sourceRef="_7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E" targetRef="_6C3C95C7-B442-4A39-A427-8745B8BEDA70">
+    <bpmn2:sequenceFlow id="_CCB3C83F-8493-4052-9FDF-A5453F8760A6" sourceRef="_AA2F4704-C261-4E22-ADE4-A71B01869862" targetRef="_6C3C95C7-B442-4A39-A427-8745B8BEDA70">
       <bpmn2:extensionElements>
-        <drools:metaData name="isAutoConnection.source">
-          <drools:metaValue><![CDATA[true]]></drools:metaValue>
-        </drools:metaData>
         <drools:metaData name="isAutoConnection.target">
           <drools:metaValue><![CDATA[true]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_2892A6FA-C4E0-4EB0-A635-C25CCD29AB2A" sourceRef="_7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E" targetRef="_1BF8E39F-507E-470C-BEF2-FC906142B72A"/>
+    <bpmn2:serviceTask id="_AA2F4704-C261-4E22-ADE4-A71B01869862" drools:serviceimplementation="Java" drools:serviceinterface="org.kie.kogito.shipping.ShippingService" drools:serviceoperation="createShipping" name="Create Shipping" implementation="Java" operationRef="_AA2F4704-C261-4E22-ADE4-A71B01869862_ServiceOperation">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Create Shipping]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_29D2F6C4-CAD8-4138-AB79-8856F54FA8C6</bpmn2:incoming>
+      <bpmn2:outgoing>_CCB3C83F-8493-4052-9FDF-A5453F8760A6</bpmn2:outgoing>
+      <bpmn2:ioSpecification>
+        <bpmn2:dataInput id="_AA2F4704-C261-4E22-ADE4-A71B01869862_prizeInputX" drools:dtype="org.kie.kogito.shipping.Prize" itemSubjectRef="__AA2F4704-C261-4E22-ADE4-A71B01869862_prizeInputXItem" name="prize"/>
+        <bpmn2:dataInput id="_AA2F4704-C261-4E22-ADE4-A71B01869862_quote1InputX" drools:dtype="org.kie.kogito.shipping.Quote" itemSubjectRef="__AA2F4704-C261-4E22-ADE4-A71B01869862_quote1InputXItem" name="quote1"/>
+        <bpmn2:dataInput id="_AA2F4704-C261-4E22-ADE4-A71B01869862_quote2InputX" drools:dtype="org.kie.kogito.shipping.Quote" itemSubjectRef="__AA2F4704-C261-4E22-ADE4-A71B01869862_quote2InputXItem" name="quote2"/>
+        <bpmn2:dataOutput id="_AA2F4704-C261-4E22-ADE4-A71B01869862_resultOutputX" drools:dtype="org.kie.kogito.shipping.Shipping" itemSubjectRef="__AA2F4704-C261-4E22-ADE4-A71B01869862_resultOutputXItem" name="result"/>
+        <bpmn2:inputSet>
+          <bpmn2:dataInputRefs>_AA2F4704-C261-4E22-ADE4-A71B01869862_prizeInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_AA2F4704-C261-4E22-ADE4-A71B01869862_quote1InputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_AA2F4704-C261-4E22-ADE4-A71B01869862_quote2InputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet>
+          <bpmn2:dataOutputRefs>_AA2F4704-C261-4E22-ADE4-A71B01869862_resultOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>prize</bpmn2:sourceRef>
+        <bpmn2:targetRef>_AA2F4704-C261-4E22-ADE4-A71B01869862_prizeInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>quote1</bpmn2:sourceRef>
+        <bpmn2:targetRef>_AA2F4704-C261-4E22-ADE4-A71B01869862_quote1InputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>quote2</bpmn2:sourceRef>
+        <bpmn2:targetRef>_AA2F4704-C261-4E22-ADE4-A71B01869862_quote2InputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation>
+        <bpmn2:sourceRef>_AA2F4704-C261-4E22-ADE4-A71B01869862_resultOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>shipping</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:serviceTask>
+    <bpmn2:inclusiveGateway id="_AAB7FDF4-5904-49BB-BAF0-D64993010294" gatewayDirection="Converging">
+      <bpmn2:incoming>_22FCDAE6-6011-463E-B155-18F24BD711A8</bpmn2:incoming>
+      <bpmn2:incoming>_65A9418F-34AF-40C8-8E4A-E406658175EC</bpmn2:incoming>
+      <bpmn2:outgoing>_6A0D6328-4407-4E3F-8CBC-D6758FCB75BB</bpmn2:outgoing>
+    </bpmn2:inclusiveGateway>
+    <bpmn2:parallelGateway id="_1BF8E39F-507E-470C-BEF2-FC906142B72A" gatewayDirection="Diverging">
+      <bpmn2:incoming>_2892A6FA-C4E0-4EB0-A635-C25CCD29AB2A</bpmn2:incoming>
+      <bpmn2:outgoing>_6FCBDCD3-F325-4583-B86B-8EFC1FC65D4E</bpmn2:outgoing>
+      <bpmn2:outgoing>_ED7762AC-B667-4A49-B8DB-1C89E1CF7EEF</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:serviceTask id="_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD" drools:serviceimplementation="Java" drools:serviceinterface="org.kie.kogito.shipping.CourierService" drools:serviceoperation="retrieveQuote" name="Courier B" implementation="Java" operationRef="_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_ServiceOperation">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Courier B]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_ED7762AC-B667-4A49-B8DB-1C89E1CF7EEF</bpmn2:incoming>
+      <bpmn2:outgoing>_65A9418F-34AF-40C8-8E4A-E406658175EC</bpmn2:outgoing>
+      <bpmn2:ioSpecification>
+        <bpmn2:dataInput id="_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_prizeInputX" drools:dtype="org.kie.kogito.shipping.Prize" itemSubjectRef="__9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_prizeInputXItem" name="prize"/>
+        <bpmn2:dataInput id="_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_courierInputX" drools:dtype="String" itemSubjectRef="__9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_courierInputXItem" name="courier"/>
+        <bpmn2:dataOutput id="_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_resultOutputX" drools:dtype="org.kie.kogito.shipping.Quote" itemSubjectRef="__9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_resultOutputXItem" name="result"/>
+        <bpmn2:inputSet>
+          <bpmn2:dataInputRefs>_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_prizeInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_courierInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet>
+          <bpmn2:dataOutputRefs>_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_resultOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>prize</bpmn2:sourceRef>
+        <bpmn2:targetRef>_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_prizeInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:targetRef>_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_courierInputX</bpmn2:targetRef>
+        <bpmn2:assignment>
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression"><![CDATA[Courier B]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression"><![CDATA[_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_courierInputX]]></bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation>
+        <bpmn2:sourceRef>_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_resultOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>quote2</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:serviceTask>
+    <bpmn2:businessRuleTask id="_90D42315-4321-4F1C-B5A7-0D51917F35CD" drools:ruleFlowGroup="quotes" name="Evaluate best quote" implementation="http://www.jboss.org/drools/rule">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Evaluate best quote]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_6A0D6328-4407-4E3F-8CBC-D6758FCB75BB</bpmn2:incoming>
+      <bpmn2:outgoing>_29D2F6C4-CAD8-4138-AB79-8856F54FA8C6</bpmn2:outgoing>
+      <bpmn2:ioSpecification>
+        <bpmn2:dataInput id="_90D42315-4321-4F1C-B5A7-0D51917F35CD_quote1InputX" drools:dtype="org.kie.kogito.shipping.Quote" itemSubjectRef="__90D42315-4321-4F1C-B5A7-0D51917F35CD_quote1InputXItem" name="quote1"/>
+        <bpmn2:dataInput id="_90D42315-4321-4F1C-B5A7-0D51917F35CD_quote2InputX" drools:dtype="org.kie.kogito.shipping.Quote" itemSubjectRef="__90D42315-4321-4F1C-B5A7-0D51917F35CD_quote2InputXItem" name="quote2"/>
+        <bpmn2:inputSet>
+          <bpmn2:dataInputRefs>_90D42315-4321-4F1C-B5A7-0D51917F35CD_quote1InputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_90D42315-4321-4F1C-B5A7-0D51917F35CD_quote2InputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>quote1</bpmn2:sourceRef>
+        <bpmn2:targetRef>_90D42315-4321-4F1C-B5A7-0D51917F35CD_quote1InputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>quote2</bpmn2:sourceRef>
+        <bpmn2:targetRef>_90D42315-4321-4F1C-B5A7-0D51917F35CD_quote2InputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:businessRuleTask>
+    <bpmn2:serviceTask id="_D3AED44F-24B8-4A6C-A29D-584BB000F32A" drools:serviceimplementation="Java" drools:serviceinterface="org.kie.kogito.shipping.CourierService" drools:serviceoperation="retrieveQuote" name="Courier A" implementation="Java" operationRef="_D3AED44F-24B8-4A6C-A29D-584BB000F32A_ServiceOperation">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Courier A]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_6FCBDCD3-F325-4583-B86B-8EFC1FC65D4E</bpmn2:incoming>
+      <bpmn2:outgoing>_22FCDAE6-6011-463E-B155-18F24BD711A8</bpmn2:outgoing>
+      <bpmn2:ioSpecification>
+        <bpmn2:dataInput id="_D3AED44F-24B8-4A6C-A29D-584BB000F32A_prizeInputX" drools:dtype="org.kie.kogito.shipping.Prize" itemSubjectRef="__D3AED44F-24B8-4A6C-A29D-584BB000F32A_prizeInputXItem" name="prize"/>
+        <bpmn2:dataInput id="_D3AED44F-24B8-4A6C-A29D-584BB000F32A_courierInputX" drools:dtype="String" itemSubjectRef="__D3AED44F-24B8-4A6C-A29D-584BB000F32A_courierInputXItem" name="courier"/>
+        <bpmn2:dataOutput id="_D3AED44F-24B8-4A6C-A29D-584BB000F32A_resultOutputX" drools:dtype="org.kie.kogito.shipping.Quote" itemSubjectRef="__D3AED44F-24B8-4A6C-A29D-584BB000F32A_resultOutputXItem" name="result"/>
+        <bpmn2:inputSet>
+          <bpmn2:dataInputRefs>_D3AED44F-24B8-4A6C-A29D-584BB000F32A_prizeInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_D3AED44F-24B8-4A6C-A29D-584BB000F32A_courierInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet>
+          <bpmn2:dataOutputRefs>_D3AED44F-24B8-4A6C-A29D-584BB000F32A_resultOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>prize</bpmn2:sourceRef>
+        <bpmn2:targetRef>_D3AED44F-24B8-4A6C-A29D-584BB000F32A_prizeInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:targetRef>_D3AED44F-24B8-4A6C-A29D-584BB000F32A_courierInputX</bpmn2:targetRef>
+        <bpmn2:assignment>
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression"><![CDATA[Courier A]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression"><![CDATA[_D3AED44F-24B8-4A6C-A29D-584BB000F32A_courierInputX]]></bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation>
+        <bpmn2:sourceRef>_D3AED44F-24B8-4A6C-A29D-584BB000F32A_resultOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>quote1</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:serviceTask>
     <bpmn2:endEvent id="_B643C619-B353-4E0C-AC50-AE214FE49C8A">
       <bpmn2:incoming>_95B0CA64-1025-42AD-934A-D90CE3AF17E0</bpmn2:incoming>
-      <bpmn2:dataInput id="_B643C619-B353-4E0C-AC50-AE214FE49C8A_eventInputX" drools:dtype="String" itemSubjectRef="__B643C619-B353-4E0C-AC50-AE214FE49C8A_eventInputXItem" name="event"/>
+      <bpmn2:dataInput id="_B643C619-B353-4E0C-AC50-AE214FE49C8A_eventInputX" drools:dtype="org.kie.kogito.shipping.Prize" itemSubjectRef="__B643C619-B353-4E0C-AC50-AE214FE49C8A_eventInputXItem" name="event"/>
       <bpmn2:dataInputAssociation>
-        <bpmn2:sourceRef>order</bpmn2:sourceRef>
+        <bpmn2:sourceRef>prize</bpmn2:sourceRef>
         <bpmn2:targetRef>_B643C619-B353-4E0C-AC50-AE214FE49C8A_eventInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:inputSet>
         <bpmn2:dataInputRefs>_B643C619-B353-4E0C-AC50-AE214FE49C8A_eventInputX</bpmn2:dataInputRefs>
       </bpmn2:inputSet>
-      <bpmn2:messageEventDefinition drools:msgref="shipping_completed" messageRef="_St5oAKEHEDmf24l4WbBWEg"/>
+      <bpmn2:messageEventDefinition drools:msgref="shipping_completed" messageRef="_BEMdsKJ4EDmevZHnPmQqvw"/>
     </bpmn2:endEvent>
     <bpmn2:userTask id="_6C3C95C7-B442-4A39-A427-8745B8BEDA70" name="Handle Shipping">
       <bpmn2:extensionElements>
@@ -58,13 +239,15 @@
           <drools:metaValue><![CDATA[Handle Shipping]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>_405634B2-776E-4C04-B99A-809FEFC79828</bpmn2:incoming>
+      <bpmn2:incoming>_CCB3C83F-8493-4052-9FDF-A5453F8760A6</bpmn2:incoming>
       <bpmn2:outgoing>_95B0CA64-1025-42AD-934A-D90CE3AF17E0</bpmn2:outgoing>
       <bpmn2:ioSpecification>
         <bpmn2:dataInput id="_6C3C95C7-B442-4A39-A427-8745B8BEDA70_TaskNameInputX" drools:dtype="Object" itemSubjectRef="__6C3C95C7-B442-4A39-A427-8745B8BEDA70_TaskNameInputXItem" name="TaskName"/>
+        <bpmn2:dataInput id="_6C3C95C7-B442-4A39-A427-8745B8BEDA70_shippingInputX" drools:dtype="org.kie.kogito.shipping.Shipping" itemSubjectRef="__6C3C95C7-B442-4A39-A427-8745B8BEDA70_shippingInputXItem" name="shipping"/>
         <bpmn2:dataInput id="_6C3C95C7-B442-4A39-A427-8745B8BEDA70_SkippableInputX" drools:dtype="Object" itemSubjectRef="__6C3C95C7-B442-4A39-A427-8745B8BEDA70_SkippableInputXItem" name="Skippable"/>
         <bpmn2:inputSet>
           <bpmn2:dataInputRefs>_6C3C95C7-B442-4A39-A427-8745B8BEDA70_TaskNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_6C3C95C7-B442-4A39-A427-8745B8BEDA70_shippingInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_6C3C95C7-B442-4A39-A427-8745B8BEDA70_SkippableInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
       </bpmn2:ioSpecification>
@@ -76,6 +259,10 @@
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>shipping</bpmn2:sourceRef>
+        <bpmn2:targetRef>_6C3C95C7-B442-4A39-A427-8745B8BEDA70_shippingInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation>
         <bpmn2:targetRef>_6C3C95C7-B442-4A39-A427-8745B8BEDA70_SkippableInputX</bpmn2:targetRef>
         <bpmn2:assignment>
           <bpmn2:from xsi:type="bpmn2:tFormalExpression"><![CDATA[false]]></bpmn2:from>
@@ -84,36 +271,87 @@
       </bpmn2:dataInputAssociation>
     </bpmn2:userTask>
     <bpmn2:startEvent id="_7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E">
-      <bpmn2:outgoing>_405634B2-776E-4C04-B99A-809FEFC79828</bpmn2:outgoing>
-      <bpmn2:dataOutput id="_7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E_eventOutputX" drools:dtype="String" itemSubjectRef="__7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E_eventOutputXItem" name="event"/>
+      <bpmn2:outgoing>_2892A6FA-C4E0-4EB0-A635-C25CCD29AB2A</bpmn2:outgoing>
+      <bpmn2:dataOutput id="_7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E_eventOutputX" drools:dtype="org.kie.kogito.shipping.Prize" itemSubjectRef="__7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E_eventOutputXItem" name="event"/>
       <bpmn2:dataOutputAssociation>
         <bpmn2:sourceRef>_7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E_eventOutputX</bpmn2:sourceRef>
-        <bpmn2:targetRef>order</bpmn2:targetRef>
+        <bpmn2:targetRef>prize</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
       <bpmn2:outputSet>
         <bpmn2:dataOutputRefs>_7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E_eventOutputX</bpmn2:dataOutputRefs>
       </bpmn2:outputSet>
-      <bpmn2:messageEventDefinition drools:msgref="new_shipping" messageRef="_St5A8KEHEDmf24l4WbBWEg"/>
+      <bpmn2:messageEventDefinition drools:msgref="shipping" messageRef="_BEL2oKJ4EDmevZHnPmQqvw"/>
     </bpmn2:startEvent>
   </bpmn2:process>
   <bpmndi:BPMNDiagram>
     <bpmndi:BPMNPlane bpmnElement="shipping">
       <bpmndi:BPMNShape id="shape__7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E" bpmnElement="_7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E">
-        <dc:Bounds height="56" width="56" x="360" y="271"/>
+        <dc:Bounds height="56" width="56" x="141" y="271"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__6C3C95C7-B442-4A39-A427-8745B8BEDA70" bpmnElement="_6C3C95C7-B442-4A39-A427-8745B8BEDA70">
-        <dc:Bounds height="102" width="154" x="496" y="248"/>
+        <dc:Bounds height="102" width="154" x="1277" y="248"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__B643C619-B353-4E0C-AC50-AE214FE49C8A" bpmnElement="_B643C619-B353-4E0C-AC50-AE214FE49C8A">
-        <dc:Bounds height="56" width="56" x="730" y="271"/>
+        <dc:Bounds height="56" width="56" x="1511" y="271"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="edge_shape__7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E_to_shape__6C3C95C7-B442-4A39-A427-8745B8BEDA70" bpmnElement="_405634B2-776E-4C04-B99A-809FEFC79828">
-        <di:waypoint x="416" y="299"/>
-        <di:waypoint x="496" y="299"/>
+      <bpmndi:BPMNShape id="shape__D3AED44F-24B8-4A6C-A29D-584BB000F32A" bpmnElement="_D3AED44F-24B8-4A6C-A29D-584BB000F32A">
+        <dc:Bounds height="102" width="154" x="433" y="146"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__90D42315-4321-4F1C-B5A7-0D51917F35CD" bpmnElement="_90D42315-4321-4F1C-B5A7-0D51917F35CD">
+        <dc:Bounds height="102" width="154" x="800" y="248"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__9CD7FBE8-9279-4E8C-A7E9-49375749DFAD" bpmnElement="_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD">
+        <dc:Bounds height="102" width="154" x="433" y="350"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__1BF8E39F-507E-470C-BEF2-FC906142B72A" bpmnElement="_1BF8E39F-507E-470C-BEF2-FC906142B72A">
+        <dc:Bounds height="56" width="56" x="287" y="271"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__AAB7FDF4-5904-49BB-BAF0-D64993010294" bpmnElement="_AAB7FDF4-5904-49BB-BAF0-D64993010294">
+        <dc:Bounds height="56" width="56" x="666" y="271"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__AA2F4704-C261-4E22-ADE4-A71B01869862" bpmnElement="_AA2F4704-C261-4E22-ADE4-A71B01869862">
+        <dc:Bounds height="102" width="154" x="1024" y="248"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_shape__7A94A6DD-ECEA-4F2A-902C-7D7C01E0FF7E_to_shape__1BF8E39F-507E-470C-BEF2-FC906142B72A" bpmnElement="_2892A6FA-C4E0-4EB0-A635-C25CCD29AB2A">
+        <di:waypoint x="169" y="299"/>
+        <di:waypoint x="287" y="299"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__AA2F4704-C261-4E22-ADE4-A71B01869862_to_shape__6C3C95C7-B442-4A39-A427-8745B8BEDA70" bpmnElement="_CCB3C83F-8493-4052-9FDF-A5453F8760A6">
+        <di:waypoint x="1101" y="299"/>
+        <di:waypoint x="1277" y="299"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__6C3C95C7-B442-4A39-A427-8745B8BEDA70_to_shape__B643C619-B353-4E0C-AC50-AE214FE49C8A" bpmnElement="_95B0CA64-1025-42AD-934A-D90CE3AF17E0">
-        <di:waypoint x="650" y="299"/>
-        <di:waypoint x="730" y="299"/>
+        <di:waypoint x="1431" y="299"/>
+        <di:waypoint x="1511" y="299"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__1BF8E39F-507E-470C-BEF2-FC906142B72A_to_shape__D3AED44F-24B8-4A6C-A29D-584BB000F32A" bpmnElement="_6FCBDCD3-F325-4583-B86B-8EFC1FC65D4E">
+        <di:waypoint x="315" y="271"/>
+        <di:waypoint x="315" y="197"/>
+        <di:waypoint x="433" y="197"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__D3AED44F-24B8-4A6C-A29D-584BB000F32A_to_shape__AAB7FDF4-5904-49BB-BAF0-D64993010294" bpmnElement="_22FCDAE6-6011-463E-B155-18F24BD711A8">
+        <di:waypoint x="510" y="197"/>
+        <di:waypoint x="625" y="197.00553562494616"/>
+        <di:waypoint x="694" y="197.00553562494616"/>
+        <di:waypoint x="694" y="271"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__AAB7FDF4-5904-49BB-BAF0-D64993010294_to_shape__90D42315-4321-4F1C-B5A7-0D51917F35CD" bpmnElement="_6A0D6328-4407-4E3F-8CBC-D6758FCB75BB">
+        <di:waypoint x="694" y="299"/>
+        <di:waypoint x="800" y="299"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__90D42315-4321-4F1C-B5A7-0D51917F35CD_to_shape__AA2F4704-C261-4E22-ADE4-A71B01869862" bpmnElement="_29D2F6C4-CAD8-4138-AB79-8856F54FA8C6">
+        <di:waypoint x="877" y="299"/>
+        <di:waypoint x="1024" y="299"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__1BF8E39F-507E-470C-BEF2-FC906142B72A_to_shape__9CD7FBE8-9279-4E8C-A7E9-49375749DFAD" bpmnElement="_ED7762AC-B667-4A49-B8DB-1C89E1CF7EEF">
+        <di:waypoint x="315" y="327"/>
+        <di:waypoint x="315" y="401"/>
+        <di:waypoint x="433" y="401"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__9CD7FBE8-9279-4E8C-A7E9-49375749DFAD_to_shape__AAB7FDF4-5904-49BB-BAF0-D64993010294" bpmnElement="_65A9418F-34AF-40C8-8E4A-E406658175EC">
+        <di:waypoint x="510" y="401"/>
+        <di:waypoint x="694" y="401"/>
+        <di:waypoint x="694" y="327"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
@@ -142,10 +380,90 @@
               </bpsim:UnitCost>
             </bpsim:CostParameters>
           </bpsim:ElementParameters>
+          <bpsim:ElementParameters elementRef="_D3AED44F-24B8-4A6C-A29D-584BB000F32A">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters>
+              <bpsim:Availability>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters>
+              <bpsim:UnitCost>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters elementRef="_90D42315-4321-4F1C-B5A7-0D51917F35CD">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters>
+              <bpsim:Availability>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters>
+              <bpsim:UnitCost>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters elementRef="_9CD7FBE8-9279-4E8C-A7E9-49375749DFAD">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters>
+              <bpsim:Availability>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters>
+              <bpsim:UnitCost>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters elementRef="_AA2F4704-C261-4E22-ADE4-A71B01869862">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters>
+              <bpsim:Availability>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters>
+              <bpsim:UnitCost>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_St3LwKEHEDmf24l4WbBWEg</bpmn2:source>
-    <bpmn2:target>_St3LwKEHEDmf24l4WbBWEg</bpmn2:target>
+    <bpmn2:source>_BD_CUKJ4EDmevZHnPmQqvw</bpmn2:source>
+    <bpmn2:target>_BD_CUKJ4EDmevZHnPmQqvw</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>

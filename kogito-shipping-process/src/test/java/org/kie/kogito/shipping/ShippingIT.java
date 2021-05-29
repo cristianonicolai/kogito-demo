@@ -43,7 +43,9 @@ public class ShippingIT {
 
     @Test
     public void testProcess() throws Exception {
-        CloudEventV03 ce = CloudEventBuilder.v03().withData("\"test\"".getBytes(StandardCharsets.UTF_8)).withSource(URI.create("http://localhost")).withType("new_shipping").withId(UUID.randomUUID().toString()).build();
+        Prize prize = new Prize("admin", "details", "lego"); 
+        
+        CloudEventV03 ce = CloudEventBuilder.v03().withData(mapper.writeValueAsBytes(prize)).withSource(URI.create("http://localhost")).withType("shipping").withId(UUID.randomUUID().toString()).build();
         
         connector.source(KOGITO_INCOMING_STREAM).send(mapper.writeValueAsString(ce));
         InMemorySink received = connector.sink(KOGITO_OUTGOING_STREAM);
@@ -66,6 +68,14 @@ public class ShippingIT {
                 .get("/shipping/{processId}/tasks", id)
                 .then()
                 .statusCode(200)
+                .log().ifValidationFails()
+                .body("$.size()", is(1))
+                .body("[0].id", not(emptyOrNullString()))
+                .body("[0].parameters.shipping.prize.username", is(prize.getUsername()))
+                .body("[0].parameters.shipping.prize.details", is(prize.getDetails()))
+                .body("[0].parameters.shipping.prize.prizename", is(prize.getPrizename()))
+                .body("[0].parameters.shipping.quote.courier", not(emptyOrNullString()))
+                .body("[0].parameters.shipping.quote.approved", is(true))
                 .extract()
                 .path("[0].id");
 
